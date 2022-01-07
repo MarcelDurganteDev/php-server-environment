@@ -1,1 +1,20 @@
-<!-- "validate.php": All login validations must be done in this file receiving the form data by the POST method and this should redirect the user depending on whether the login is correct or not. You can use a simple string comparison or anything you want for deciding if the login is correct or not. -->
+<?php
+
+$username = "Marcel";
+$password = "2021";
+
+session_start();
+
+if (isset($_SESSION['username']) && $_SESSION['password']) {
+    $url = "panel.php";
+    header("Location: " . $url);
+} else {
+    if ($_POST['username'] == $username && $_POST['password'] == $password) {
+        $_SESSION['username'] = $username;
+        $_SESSION['password'] = $password;
+        $url = "panel.php";
+        header('Location: ' . $url);
+    } else {
+        header('Location: index.php');
+    }
+}

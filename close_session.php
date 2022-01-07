@@ -1,1 +1,11 @@
-<!-- "close_session.php": This is the last file which will be responsible for destroying the session and redirecting to the login page. -->
+<?php
+
+session_start();
+
+session_destroy();
+unset($_SESSION['username']);
+unset($_SESSION['password']);
+
+header('Location: index.php');
+
+?>
